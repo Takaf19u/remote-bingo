@@ -1,7 +1,23 @@
 <template>
-    <div class="logo">
-      <b>l<span>e</span>mo<span>t</span>e</b>
-      <b><span>B</span>IN<span>G</span>O</b>
+    <div id="toppage">
+      <div id="topItems">
+        <div id="logobox">
+          <div class="logo">
+            <b class="logotitle1">r<span id="logo1">e</span>mo<span id="logo2">t</span>e</b>
+            <b class="logotitle2"><span>B</span>I<span>N</span>G<span>O</span></b>
+          </div>
+          <span id="topbtn" @click="checkTopBtn">CLICK HERE</span>
+        </div>
+      </div>
+      <div id="mainItems">
+        <a href="" class="mainItems__btn mainbtn1">
+          <p>Create</p>
+          <p>group</p>
+        </a>
+        <a href="#" class="mainItems__btn mainbtn2">
+          参加者
+        </a>
+      </div>
     </div>
 </template>
 
@@ -9,6 +25,45 @@
 export default {
   data: function () {
     return {
+    }
+  },
+  methods: {
+    checkTopBtn() {
+      let topbtn = document.getElementById('topbtn');
+      let topItems = document.getElementById('topItems');
+
+      this.fadeOut(topbtn, 500);
+      this.slide_up_init(topItems);
+
+    },
+    fadeOut(target, myTime){
+      var begin = new Date() - 0;
+      target.style.opacity = 1;
+      // フェードアウト
+      var set = setInterval(function() {
+        var current = new Date() - begin;
+        if (target.style.opacity <= 0) {
+          clearInterval(set);
+          target.remove();
+        }
+        target.style.opacity -= 0.7 * (current / myTime);
+      }.bind(this), 10);
+    },
+    slide_up_init(target) {
+        var bh = 100;
+        this.slide(target, bh, 0, 700);
+    },
+    slide(element, start, end, speed) {
+        var counter = 0;
+        let height = start/2 + "px";
+        var per = Math.abs(end - 50) / (speed / 10);
+        var slideTimer = setInterval(function() {
+            counter++;
+            element.style.height = Math.abs(100 - per * counter) + '%';
+            if(element.style.height <= "50%") {
+                clearInterval(slideTimer);
+            }
+        }, 10);
     }
   }
 }
@@ -18,30 +73,228 @@ export default {
 <style scoped>
   @import url(//fonts.googleapis.com/css?family=Vibur);
 
-  .logo {
+  .mainItems__btn {
+    font-family: 'Monoton', cursive;
+    color: #FF1177;
+    text-decoration: none;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
     text-align: center;
-    width: 65%;
-    height: 250px;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    user-select: none;
+    border: double 5px #FF1177;
+    padding: 5px;
+    width: 50%;
+    margin: 10px;
+    height: 100%;
   }
 
-  .logo b{
-    font: 400 19vh "Vibur";
-    color: #fee;
-    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+  .mainItems__btn > p{
+    color: #FF1177;
+    -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+    -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+    animation: neon1 1.5s ease-in-out infinite alternate;
   }
-  .logo b span{
+
+  .mainItems__btn:hover > p {
+    color: white;
+    -webkit-animation: none;
+    -moz-animation: none;
+    animation: none;
+  }
+
+  @-webkit-keyframes neon1 {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+    }
+  }
+
+  @-moz-keyframes neon1 {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+    }
+  }
+
+  @keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+
+
+  #toppage {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+
+  #mainItems {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    height: 50%;
+    width: 100%;
+    box-shadow: 0 8px 8px -3px gray inset;
+    align-items: center;
+    padding: 20px;
+  }
+
+  #topItems {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+     right: 0;
+     left: 0;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    background-image: url("/assets/Brick-background.jpg");
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+  #topItems::before {
+  content: "";
+  position: absolute;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(22, 22, 22, 0.537);
+  background-image: -webkit-radial-gradient(rgba(218, 214, 214, 0.253),(82, 81, 81), rgba(14, 13, 13, 0.651));
+  background-image: radial-gradient(rgba(218, 214, 214, 0.253), rgba(12, 11, 11, 0.651));
+}
+
+  #logobox {
+    text-align: center;
+    user-select: none;
+    margin: 10px auto;
+    position: relative;
+    width: 400px;
+    z-index: 2;
+  }
+  
+  .logo {
+    position: relative;
+    padding: 10px 20px;
+  }
+  .logo::after {
+    content: "";
+    position: absolute;
+     top: 0;
+     bottom: 0;
+     right: 0;
+     left: 0;
+    height: 100%;
+    width: 100%;
+
+    color: rgba(8, 221, 221, 0.6);
+    border: 2px solid rgba(8, 221, 221, 0.6);
+    border-radius: 4px;
+    background-color: transparent;
+    box-shadow: 0px 0px 5px 5px rgba(8, 221, 221, 0.6);
+    animation: flickering 5s infinite;
+  }
+
+
+
+  .logo b{
+    color: rgba(8, 221, 221, 0.6);
+    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em rgba(8, 221, 221, 0.6), 0 0 0.5em rgba(8, 221, 221, 0.6), 0 0 0.1em rgba(8, 221, 221, 0.6), 0 10px 3px #000;
+    display: block;
+    line-height: 1;
+    margin: 10px;
+  }
+
+  .logotitle1 {
+    font: 400 12vh "Vibur";
+  }
+
+.logotitle2 {
+    font: 400 19vh "Vibur";
+}
+
+  #logo1{
     animation: blink linear infinite 2s;
   }
-  .logo b span:nth-of-type(2){
-    animation: blink linear infinite 3s;
+
+  .logotitle2 span:nth-child(1) {
+    animation: blink2 linear infinite 3s;
+}
+  .logotitle2 span:nth-child(2) {
+    animation: blink2 linear infinite 3.5s;
+}
+  .logotitle2 span:nth-child(3) {
+    animation: blink2 linear infinite 4s;
+}
+
+  #topbtn {
+    display: inline-block;
+    font-family: 'Chelsea Market', cursive;
+    position: absolute;
+      bottom: -40%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    padding: 10px 30px;
+    border-radius:  20px;
+    width: 70%;
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 3px rgba(238, 130, 238, 0.534);
+    background: linear-gradient(130deg, #ffdb2c, rgb(248, 146, 112) 25%, rgba(248, 8, 188, 0.719) 50%) no-repeat;
   }
+
+  #topbtn:hover {
+    box-shadow: 0px 0px 5px 5px rgba(255, 255, 0, 0.507);
+  }
+
+
+  x-sign {
+    --interval: 1s;
+    display: block;
+    text-shadow: 
+      0 0 10px var(--color1),
+      0 0 20px var(--color2),
+      0 0 40px var(--color3),
+      0 0 80px var(--color4);
+    will-change: filter, color;
+    filter: saturate(60%);
+    animation: flicker steps(100) var(--interval) 1s infinite;
+  }
+
+  x-sign:nth-of-type(1) {
+    color: yellow;
+    --color1: yellow;
+    --color2: lime;
+    --color3: green;
+    --color4: darkgreen;
+    font-family: Monoton;
+    font-weight: 700;
+  }
+
+  @keyframes flicker {
+    50% {
+      color: white;
+      filter: saturate(200%) hue-rotate(20deg);
+    }
+  }
+
   @keyframes blink {
     78% {
       color: inherit;
@@ -73,6 +326,82 @@ export default {
     92.5% {
       color: inherit;
       text-shadow: inherit;
+    }
+  }
+  
+  @keyframes blink2 {
+    78% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    79%{
+      color: rgb(222, 226, 4);
+    }
+    80% {
+      
+      text-shadow: none;
+    }
+    81% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    82% {
+      color: rgb(10, 135, 252);
+      text-shadow: none;
+    }
+    83% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+    92% {
+      color: rgba(241, 10, 222, 0.5);
+      text-shadow: none;
+    }
+    92.5% {
+      color: inherit;
+      text-shadow: inherit;
+    }
+  }
+
+  @keyframes flickering {
+    0% {
+      border-color: transparent;
+      opacity: 0.2;
+    }
+    
+    2% {
+    color: rgba(8, 221, 221, 0.6);
+      opacity: 1;
+    }
+    
+    4% {
+      border-color: transparent;
+      opacity: 0.2;
+    }
+    
+    8% {
+    color: rgba(8, 221, 221, 0.6);
+      opacity: 1;
+    }
+    
+    28% {
+    color: rgba(8, 221, 221, 0.6);
+      opacity: 1;
+    }
+    
+    30% {
+      border-color: transparent;
+      opacity: 0.2;
+    }
+    
+    36% {
+    color: rgba(8, 221, 221, 0.6);
+      opacity: 1;
+    }
+    
+    100% {
+    color: rgba(8, 221, 221, 0.6);
+      opacity: 1;
     }
   }
 </style>
