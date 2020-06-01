@@ -10,13 +10,20 @@
         </div>
       </div>
       <div id="mainItems">
-        <a href="" class="mainItems__btn mainbtn1">
-          <p>Create</p>
-          <p>group</p>
-        </a>
-        <a href="#" class="mainItems__btn mainbtn2">
-          参加者
-        </a>
+        <div class="mainbtns">
+          <a href="" class="mainItems__btn mainbtn1">
+            <div class="text text1">
+              <p>Create</p>
+              <p>Group</p>
+            </div>
+          </a>
+          <a href="#" class="mainItems__btn mainbtn2">
+            <div class="text text2">
+              <p>Join</p>
+              <p>Group</p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
 </template>
@@ -73,81 +80,11 @@ export default {
 <style scoped>
   @import url(//fonts.googleapis.com/css?family=Vibur);
 
-  .mainItems__btn {
-    font-family: 'Monoton', cursive;
-    color: #FF1177;
-    text-decoration: none;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    transition: all 0.5s;
-    text-align: center;
-    border: double 5px #FF1177;
-    padding: 5px;
-    width: 50%;
-    margin: 10px;
-    height: 100%;
-  }
-
-  .mainItems__btn > p{
-    color: #FF1177;
-    -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
-    -moz-animation: neon1 1.5s ease-in-out infinite alternate;
-    animation: neon1 1.5s ease-in-out infinite alternate;
-  }
-
-  .mainItems__btn:hover > p {
-    color: white;
-    -webkit-animation: none;
-    -moz-animation: none;
-    animation: none;
-  }
-
-  @-webkit-keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-    }
-    to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-    }
-  }
-
-  @-moz-keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-    }
-    to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-    }
-  }
-
-  @keyframes neon1 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-  }
-}
-
-
   #toppage {
     height: 100vh;
     width: 100%;
     position: relative;
   }
-
-  #mainItems {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 0;
-    height: 50%;
-    width: 100%;
-    box-shadow: 0 8px 8px -3px gray inset;
-    align-items: center;
-    padding: 20px;
-  }
-
   #topItems {
     display: flex;
     align-items: center;
@@ -160,7 +97,7 @@ export default {
     height: 100%;
     width: 100%;
     background-image: url("/assets/Brick-background.jpg");
-    background-size: cover;
+    background-size: auto;
     position: relative;
     z-index: 1;
 }
@@ -288,6 +225,83 @@ export default {
     font-weight: 700;
   }
 
+  #mainItems {
+    position: absolute;
+    bottom: 0;
+    height: 50%;
+    width: 100%;
+    box-shadow: 0 8px 8px -3px gray inset;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .mainbtns {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+
+  }
+
+  .mainItems__btn {
+    font-family: 'Monoton', cursive;
+    font-size: 4em;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    text-align: center;
+    padding: 5px;
+    width: 50%;
+    min-width: 300px;
+    min-height: 300px;
+    margin: 10px;
+    height: 100%;
+    box-shadow: inset 0px 0px  30px 5px rgb(187, 184, 184);
+    position: relative;
+  }
+    .mainItems__btn::after {
+      content: "";
+    position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    border: double 10px #FF1177;
+    box-shadow: 0px 0px  10px 3px rgb(143, 143, 143);
+    width: 100%;
+    height: 100%;
+  }
+
+  .text {
+    margin: 0 auto;
+  }
+
+  .text1 {
+    color: rgb(241, 187, 8);
+  }
+  .text2 {
+    color: rgb(115, 184, 12);
+  }
+
+  .text > p{
+    -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+    -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+    animation: neon1 1.5s ease-in-out infinite alternate;
+  }
+
+  .mainItems__btn:hover > .text p {
+    color: white;
+    -webkit-animation: none;
+    -moz-animation: none;
+    animation: none;
+  }
+
+
+/* ロゴの処理 */
   @keyframes flicker {
     50% {
       color: white;
@@ -402,6 +416,34 @@ export default {
     100% {
     color: rgba(8, 221, 221, 0.6);
       opacity: 1;
+    }
+  }
+
+  /* メインボタンの処理 */
+  @-webkit-keyframes neon1 {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+    }
+  }
+
+  @-moz-keyframes neon1 {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+    }
+  }
+
+  @keyframes neon1 {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
     }
   }
 </style>
