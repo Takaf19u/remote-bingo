@@ -11,7 +11,7 @@
       </div>
       <div id="mainItems">
         <div class="mainbtns">
-          <a href="" class="mainItems__btn mainbtn1">
+          <a href="/createGroup" class="mainItems__btn mainbtn1">
             <div class="text text1">
               <p>Create</p>
               <p>Group</p>
