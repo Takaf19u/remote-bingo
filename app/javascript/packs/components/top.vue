@@ -11,18 +11,18 @@
       </div>
       <div id="mainItems">
         <div class="mainbtns">
-          <a href="/createGroup" class="mainItems__btn mainbtn1">
+          <router-rink to="/createGroup" class="mainItems__btn mainbtn1">
             <div class="text text1">
               <p>Create</p>
               <p>Group</p>
             </div>
-          </a>
-          <a href="#" class="mainItems__btn mainbtn2">
+          </router-rink>
+          <router-rink href="#" class="mainItems__btn mainbtn2">
             <div class="text text2">
               <p>Join</p>
               <p>Group</p>
             </div>
-          </a>
+          </router-rink>
         </div>
       </div>
     </div>
@@ -288,13 +288,11 @@ export default {
   }
 
   .text > p{
-    -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
-    -moz-animation: neon1 1.5s ease-in-out infinite alternate;
-    animation: neon1 1.5s ease-in-out infinite alternate;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177;
   }
 
   .mainItems__btn:hover > .text p {
-    color: white;
+    text-shadow: none;
     -webkit-animation: none;
     -moz-animation: none;
     animation: none;
@@ -419,31 +417,4 @@ export default {
     }
   }
 
-  /* メインボタンの処理 */
-  @-webkit-keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-    }
-    to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-    }
-  }
-
-  @-moz-keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-    }
-    to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-    }
-  }
-
-  @keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-    }
-    to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-    }
-  }
 </style>
