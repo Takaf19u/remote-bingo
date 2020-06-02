@@ -3,26 +3,26 @@
       <div id="topItems">
         <div id="logobox">
           <div class="logo">
-            <b class="logotitle1">r<span id="logo1">e</span>mo<span id="logo2">t</span>e</b>
-            <b class="logotitle2"><span>B</span>I<span>N</span>G<span>O</span></b>
+            <b class="logotitle1">remo<span id="logo1">t</span>e</b>
+            <b class="logotitle2"><span>B</span>I<span>N</span>GO</b>
           </div>
           <span id="topbtn" @click="checkTopBtn">CLICK HERE</span>
         </div>
       </div>
       <div id="mainItems">
         <div class="mainbtns">
-          <router-rink to="/createGroup" class="mainItems__btn mainbtn1">
+          <router-link to="/createGroup" class="mainItems__btn mainbtn1">
             <div class="text text1">
               <p>Create</p>
               <p>Group</p>
             </div>
-          </router-rink>
-          <router-rink href="#" class="mainItems__btn mainbtn2">
+          </router-link>
+          <router-link to="#" class="mainItems__btn mainbtn2">
             <div class="text text2">
               <p>Join</p>
               <p>Group</p>
             </div>
-          </router-rink>
+          </router-link>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@ export default {
   }
 
 .logotitle2 {
-    font: 400 19vh "Vibur";
+    font: 400 18vh "Vibur";
 }
 
   #logo1{
@@ -174,9 +174,6 @@ export default {
 }
   .logotitle2 span:nth-child(2) {
     animation: blink2 linear infinite 3.5s;
-}
-  .logotitle2 span:nth-child(3) {
-    animation: blink2 linear infinite 4s;
 }
 
   #topbtn {
@@ -241,9 +238,11 @@ export default {
     max-width: 1000px;
     margin: 0 auto;
 
+
   }
 
   .mainItems__btn {
+    cursor: pointer;
     font-family: 'Monoton', cursive;
     font-size: 4em;
     font-weight: 700;
