@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/createGroup', to: 'groups#index'
 
-  resources :groups, only: :index do
+  resources :groups, only: :index :create do
     collection do
       get :createGroup
     end

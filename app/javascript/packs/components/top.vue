@@ -3,26 +3,26 @@
       <div id="topItems">
         <div id="logobox">
           <div class="logo">
-            <b class="logotitle1">r<span id="logo1">e</span>mo<span id="logo2">t</span>e</b>
-            <b class="logotitle2"><span>B</span>I<span>N</span>G<span>O</span></b>
+            <b class="logotitle1">remo<span id="logo1">t</span>e</b>
+            <b class="logotitle2"><span>B</span>I<span>N</span>GO</b>
           </div>
           <span id="topbtn" @click="checkTopBtn">CLICK HERE</span>
         </div>
       </div>
       <div id="mainItems">
         <div class="mainbtns">
-          <a href="/createGroup" class="mainItems__btn mainbtn1">
+          <router-link to="/createGroup" class="mainItems__btn mainbtn1">
             <div class="text text1">
               <p>Create</p>
               <p>Group</p>
             </div>
-          </a>
-          <a href="#" class="mainItems__btn mainbtn2">
+          </router-link>
+          <router-link to="#" class="mainItems__btn mainbtn2">
             <div class="text text2">
               <p>Join</p>
               <p>Group</p>
             </div>
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@ export default {
   }
 
 .logotitle2 {
-    font: 400 19vh "Vibur";
+    font: 400 18vh "Vibur";
 }
 
   #logo1{
@@ -174,9 +174,6 @@ export default {
 }
   .logotitle2 span:nth-child(2) {
     animation: blink2 linear infinite 3.5s;
-}
-  .logotitle2 span:nth-child(3) {
-    animation: blink2 linear infinite 4s;
 }
 
   #topbtn {
@@ -241,9 +238,11 @@ export default {
     max-width: 1000px;
     margin: 0 auto;
 
+
   }
 
   .mainItems__btn {
+    cursor: pointer;
     font-family: 'Monoton', cursive;
     font-size: 4em;
     font-weight: 700;
@@ -288,13 +287,11 @@ export default {
   }
 
   .text > p{
-    -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
-    -moz-animation: neon1 1.5s ease-in-out infinite alternate;
-    animation: neon1 1.5s ease-in-out infinite alternate;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177;
   }
 
   .mainItems__btn:hover > .text p {
-    color: white;
+    text-shadow: none;
     -webkit-animation: none;
     -moz-animation: none;
     animation: none;
@@ -419,31 +416,4 @@ export default {
     }
   }
 
-  /* メインボタンの処理 */
-  @-webkit-keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-    }
-    to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-    }
-  }
-
-  @-moz-keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-    }
-    to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-    }
-  }
-
-  @keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-    }
-    to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-    }
-  }
 </style>
