@@ -8,5 +8,6 @@ Rails.application.routes.draw do
       get :createGroup
     end
   end
+  resources :users, only: [:create, :destroy]
   
 end
