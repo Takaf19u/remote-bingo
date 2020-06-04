@@ -6,9 +6,9 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue/dist/vue.esm'
-import axios from "axios";
-import VueAxiosPlugin from "./plugins/vue-axios"; 
 import router from './router.js';
+import axios from "axios";
+import VueAxiosPlugin from "plugins/vue-axios.js"; 
 
 Vue.use(VueAxiosPlugin, { axios: axios })
 
