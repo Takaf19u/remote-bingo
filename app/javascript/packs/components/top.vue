@@ -23,18 +23,29 @@
               <p>Group</p>
             </div>
           </router-link>
+          <div @click="logout" style="color: white">logout</div>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
     }
   },
   methods: {
+      logout() {
+          debugger
+          axios.delete(`/users/sign_out`).then((res) => {
+            window.location.href = "/";
+          }, (error) => {
+            console.log(error);
+          });
+      },
     checkTopBtn() {
       let topbtn = document.getElementById('topbtn');
       let topItems = document.getElementById('topItems');
