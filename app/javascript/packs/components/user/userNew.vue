@@ -1,5 +1,4 @@
 <template>
-  <div id="userForm">
     <form @submit.prevent="createUser">
       <div class="field">
         <label for="user_email">Email</label>
@@ -22,7 +21,6 @@
         <button type="submit">送信</button>
       </div>
     </form>
-  </div>
 </template>
 
 
@@ -43,7 +41,6 @@ export default {
   },
   methods: {
       createUser() {
-          debugger
           axios.post(`/users`,{ user: this.form }).then((res) => {
             window.location.href = "/";
           }, (error) => {
@@ -56,7 +53,4 @@ export default {
 
 
 <style scoped>
-  #userForm {
-    color: white;
-  }
 </style>
