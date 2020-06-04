@@ -7,6 +7,10 @@
 
 import Vue from 'vue/dist/vue.esm'
 import router from './router.js';
+import axios from "axios";
+import VueAxiosPlugin from "plugins/vue-axios.js"; 
+
+Vue.use(VueAxiosPlugin, { axios: axios })
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

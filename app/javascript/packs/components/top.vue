@@ -11,30 +11,39 @@
       </div>
       <div id="mainItems">
         <div class="mainbtns">
-          <router-link to="/createGroup" class="mainItems__btn mainbtn1">
+          <router-link to="/users/sign_in" class="mainItems__btn mainbtn1">
             <div class="text text1">
-              <p>Create</p>
-              <p>Group</p>
+              <p>LogIn</p>
             </div>
           </router-link>
-          <router-link to="#" class="mainItems__btn mainbtn2">
+          <router-link to="/users/sign_up" class="mainItems__btn mainbtn2">
             <div class="text text2">
-              <p>Join</p>
-              <p>Group</p>
+              <p>SignUp</p>
             </div>
           </router-link>
+          <div @click="logout" style="color: white">logout</div>
+          <router-link to="/users/sign_up">new</router-link>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
     }
   },
   methods: {
+      logout() {
+          axios.delete(`/users/sign_out`).then((res) => {
+            window.location.href = "/";
+          }, (error) => {
+            console.log(error);
+          });
+      },
     checkTopBtn() {
       let topbtn = document.getElementById('topbtn');
       let topItems = document.getElementById('topItems');

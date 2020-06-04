@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  root 'groups#index'
 
+  root 'groups#index'
   get '/createGroup', to: 'groups#index'
+  get '/users/sign_up', to: 'groups#index'
+
+  # デバイスのルーティングをカスタマイズ
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
 
   resources :groups, only: [:index, :create] do
     collection do
