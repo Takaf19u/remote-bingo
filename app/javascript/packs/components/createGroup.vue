@@ -10,12 +10,12 @@
         </div>
         <div class="inputBox" id="box2">
           <label for="groupName" v-bind:class="{ 'label2': labelView[1] }" class="label">GROUP NAME</label>
-          <input name="text2" type="text" @focus="inputFocus(1)" @blur="inputBlur(1)" id="groupName" placeholder="グループ名(6文字以上)" autofocus v-model="form.groupName" maxlength="6">
+          <input name="text2" type="text" @focus="inputFocus(1)" @blur="inputBlur(1)" id="groupName" placeholder="グループ名(6文字以上)" v-model="form.groupName" maxlength="6">
         </div>
 
         <div class="inputBox" id="box3">
           <label for="password" v-bind:class="{ 'label3': labelView[2] }" class="label">PASSWORD</label>
-          <input name="text3" type="text" @focus="inputFocus(2)" @blur="inputBlur(2)" id="password" placeholder="合言葉(6文字以上)" autofocus v-model="form.password" maxlength="6">
+          <input name="text3" type="text" @focus="inputFocus(2)" @blur="inputBlur(2)" id="password" placeholder="合言葉(6文字以上)" v-model="form.password" maxlength="6">
         </div>
 
         <div class="formbtn">
