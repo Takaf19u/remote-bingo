@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # デバイスのルーティングをカスタマイズ
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+
   root 'groups#index'
 
   get '/createGroup', to: 'groups#index'
