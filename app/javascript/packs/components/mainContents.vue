@@ -4,11 +4,12 @@
         <div id="logobox">
           <span class="cp_loading03 cp_item"> </span>
           <div class="logo">
-            <b class="logotitle1">remo<span id="logo1">t</span>e</b>
-            <b class="logotitle2"><span>B</span>I<span>N</span>GO</b>
+            <b class="logotitle1">remote</b>
+            <b class="logotitle2">BINGO</b>
           </div>
         </div>
       </div>
+      <div class="message">ようこそ！！</div>
       <div id="mainItems">
         <div class="items-name">
         </div>
@@ -50,6 +51,7 @@
     background-size: auto; */
     position: relative;
     z-index: 1;
+   margin-bottom: 20vh;
 }
 
   #topItems::before {
@@ -61,9 +63,6 @@
    left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(49, 49, 49, 0.537);
-  background-image: -webkit-radial-gradient(rgba(48, 47, 47, 0.253), black);
-  background-image: radial-gradient(rgba(48, 47, 47, 0.253), black);
 }
 
   #logobox {
@@ -93,17 +92,6 @@
 .logotitle2 {
     font: 400 25vh "Vibur";
 }
-
-  /* #logo1{
-    animation: blink linear infinite 2s;
-  }
-
-  .logotitle2 span:nth-child(1) {
-    animation: blink2 linear infinite 3s;
-}
-  .logotitle2 span:nth-child(2) {
-    animation: blink2 linear infinite 3.5s;
-} */
 
   #topbtn {
     display: inline-block;
