@@ -45,7 +45,7 @@ export default {
       console.log(this.form);
       axios.post(`/users/sign_in`, { user: this.form }).then(
         res => {
-          window.location.href = "/";
+          window.location.href = "/main";
         },
         error => {
           console.log(error);

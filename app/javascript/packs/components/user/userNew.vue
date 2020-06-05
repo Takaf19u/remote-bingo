@@ -42,7 +42,7 @@ export default {
   methods: {
       createUser() {
           axios.post(`/users`,{ user: this.form }).then((res) => {
-            window.location.href = "/";
+            window.location.href = "/main";
           }, (error) => {
             console.log(error);
           });
