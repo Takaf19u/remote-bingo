@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'groups#index'
   get '/createGroup', to: 'groups#index'
   get '/users/sign_up', to: 'groups#index'
+  get '/users/sign_in', to: 'groups#index'
 
   # デバイスのルーティングをカスタマイズ
   devise_for :users, controllers: {

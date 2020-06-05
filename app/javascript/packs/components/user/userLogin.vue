@@ -14,7 +14,7 @@
       </div>
 
     <div class="field">
-      <input v-model="form.remember_me" name="user[remember_me]" type="hidden" value="0" />
+      <!-- <input v-model="form.remember_me" name="user[remember_me]" type="hidden" value="0" /> -->
       <input v-model="form.remember_me" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" />
       <label for="user_remember_me">Remember me</label>
     </div>
@@ -35,7 +35,7 @@ export default {
         name: "",
         email: "",
         password: "",
-        remember_me: "",
+        remember_me: false,
       },
       labelView: [true, false, false]
     };
@@ -43,14 +43,14 @@ export default {
   methods: {
     login() {
       console.log(this.form);
-      // axios.post(`/users`, { user: this.form }).then(
-      //   res => {
-      //     window.location.href = "/";
-      //   },
-      //   error => {
-      //     console.log(error);
-      //   }
-      // );
+      axios.post(`/users/sign_in`, { user: this.form }).then(
+        res => {
+          window.location.href = "/";
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 };
