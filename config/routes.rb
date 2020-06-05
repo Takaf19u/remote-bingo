@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/createGroup', to: 'groups#index'
   get '/users/sign_up', to: 'groups#index'
   get '/users/sign_in', to: 'groups#index'
+  get '/main', to: 'groups#index'
+  
 
   # デバイスのルーティングをカスタマイズ
   devise_for :users, controllers: {
