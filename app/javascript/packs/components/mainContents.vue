@@ -11,7 +11,6 @@
       </div>
       <div v-inview:parent="'animate'">
         <div class="animate message" :animate-toggle="'fadeInDown'">
-          <p class="animate-text1">ようこそ</p>
           <p>グループに参加してビンゴを楽しみましょう！！</p>
         </div>  
       </div>
@@ -83,10 +82,6 @@
     font-weight: 900;
     text-align: center;
     margin: 3vh 0;
-  }
-
-  .animate-text1{
-    font-size: 5vh;
   }
 
   #logobox {
