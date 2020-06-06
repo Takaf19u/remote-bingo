@@ -9,7 +9,11 @@
           </div>
         </div>
       </div>
-      <div class="message">ようこそ！！</div>
+      <div v-inview:parent="'animate'">
+        <div class="animate message" :animate-toggle="'fadeInDown'">
+          <p>グループに参加してビンゴを楽しみましょう！！</p>
+        </div>  
+      </div>
       <div id="mainItems">
         <div class="items-name">
         </div>
@@ -39,38 +43,53 @@
 
   #toppage {
     width: 100%;
-    padding-top: 2%;
+    padding-top: 8vh;
+    overflow: hidden;
   }
   #topItems {
     display: flex;
     align-items: center;
-    margin: auto;
     height: 80vh;
+    margin: 0 auto 15vh;
     width: 100%;
     /* background-image: url("/assets/Brick-background.jpg");
     background-size: auto; */
     position: relative;
     z-index: 1;
-   margin-bottom: 20vh;
 }
 
   #topItems::before {
   content: "";
   position: absolute;
-   top: 0;
+   top: -50px;
    bottom: 0;
    right: 0;
    left: 0;
-  height: 100%;
-  width: 100%;
+  height: 90vh;
+  width: 90vh;
+  margin: 0 auto;
+  z-index: -1;
+  border-radius: 100%;
+  background: (37, 37, 37);
+  box-shadow: 0 0 40px 30px rgb(22, 22, 22);
+  background-image: -webkit-radial-gradient(rgba(218, 214, 214, 0.253),(82, 81, 81), rgba(14, 13, 13, 0.651));
+  background-image: radial-gradient(rgba(218, 214, 214, 0.253), rgba(12, 11, 11, 0.651));
 }
+
+  .message {
+    font-size: 3.5vh;
+    color:rgb(248, 8, 188);
+    font-weight: 900;
+    text-align: center;
+    margin: 3vh 0;
+  }
 
   #logobox {
     text-align: center;
     user-select: none;
     margin: 10px auto;
     position: relative;
-    z-index: 2;
+
   }
   
   .logo {
@@ -217,7 +236,7 @@
 	position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: -30px;
   right: 0;
   margin: auto;
 	width: 80vh;

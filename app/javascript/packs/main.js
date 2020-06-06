@@ -7,10 +7,12 @@
 
 import Vue from 'vue/dist/vue.esm'
 import router from './router.js';
+import Inview from 'vueinview'
 import axios from "axios";
 import VueAxiosPlugin from "plugins/vue-axios.js"; 
 
 Vue.use(VueAxiosPlugin, { axios: axios })
+Vue.use(Inview)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
