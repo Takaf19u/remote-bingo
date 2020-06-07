@@ -16,13 +16,20 @@
                 <div class="animateBox-item animateBox-top"></div>
                 <div class="animateBox-item animateBox-bottom"></div>
             </div>
-            <p>グループに参加してビンゴを楽しみましょう！！</p>
+            <p>グループに参加してビンゴを楽しみましょう</p>
             <div class="animateBox">
-                <div class="animateBox-top"></div>
-                <div class="animateBox-bottom"></div>
+                <div class="animateBox-item animateBox-top"></div>
+                <div class="animateBox-item animateBox-bottom"></div>
             </div>
           </div>
         </div> 
+      </div>
+      <div class="contents-name">
+        <div v-inview:parent="'animate'">
+          <div :animate-toggle="'fadeIn'">
+            <p>CONTENTS</p>
+          </div> 
+        </div>
       </div>
       <div id="mainItems">
         <div class="items-name">
@@ -96,23 +103,94 @@
     align-items: center;
   }
 
+
   .message > .animateBox {
-    height: 3vh;
-    width: 3vh;
-    background: red;
+    height: 5vh;
+    width: 5vh;
+    margin: 0 8px;
   }
 
   .animateBox-item {
     height: 50%;
     width: 100%;
   }
-  .animateBox-top {
-    background:yellowgreen;
+  .animateBox-top,
+  .animateBox-bottom {
+    position: relative;
   }
 
-  .animateBox-bottom {
-    background:yellow;
+  .animateBox-top::before {
+    content: "";
+    position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+    opacity: 0;
+	  -webkit-animation: animateBox 1s linear infinite;
+    animation: animateBox 1s linear infinite;
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s;
+    border-radius: 2px;
   }
+
+  .animateBox-top::after {
+    content: "";
+    position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+    opacity: 0;
+	  -webkit-animation: animateBox 1s linear infinite;
+    animation: animateBox 1s linear infinite;
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+    border-radius: 2px;
+  }
+
+  .animateBox-bottom::after {
+    content: "";
+    position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+    opacity: 0;
+	  -webkit-animation: animateBox 1s linear infinite;
+    animation: animateBox 1s linear infinite;
+    -webkit-animation-delay: 0.75s;
+    animation-delay: 0.75s;
+    border-radius: 2px;
+  }
+
+  .animateBox-bottom::before {
+    content: "";
+    position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+    opacity: 0;
+	  -webkit-animation: animateBox 1s linear infinite;
+    animation: animateBox 1s linear infinite;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    border-radius: 2px;
+  }
+
+@keyframes animateBox {
+	0% {
+    background:rgb(248, 8, 188);
+		opacity: 0;
+  }
+  25% {
+		opacity: 1;
+  }
+	80% {
+    opacity: 0;
+	}
+}
 
   .message > p {
 
