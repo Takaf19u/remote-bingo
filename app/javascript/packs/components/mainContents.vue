@@ -10,15 +10,17 @@
         </div>
       </div>
       <div v-inview:parent="'animate'">
-        <div class="animate message" :animate-toggle="'fadeInDown'">
-          <div class="animateBox">
-              <div class="animateBox-top"></div>
-              <div class="animateBox-bottom"></div>
-          </div>
-          <p>グループに参加してビンゴを楽しみましょう！！</p>
-          <div class="animateBox">
-              <div class="animateBox-top"></div>
-              <div class="animateBox-bottom"></div>
+        <div :animate-toggle="'fadeInDown'">
+          <div class="animate message">
+            <div class="animateBox">
+                <div class="animateBox-item animateBox-top"></div>
+                <div class="animateBox-item animateBox-bottom"></div>
+            </div>
+            <p>グループに参加してビンゴを楽しみましょう！！</p>
+            <div class="animateBox">
+                <div class="animateBox-top"></div>
+                <div class="animateBox-bottom"></div>
+            </div>
           </div>
         </div> 
       </div>
@@ -88,27 +90,32 @@
     font-size: 3.5vh;
     color:rgb(248, 8, 188);
     font-weight: 900;
-    text-align: center;
     margin: 3vh 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .message > .animateBox {
-    height: 2vh;
-    width: 2vh;
+    height: 3vh;
+    width: 3vh;
     background: red;
   }
 
-  .message > p {
-    display: inline;
+  .animateBox-item {
+    height: 50%;
+    width: 100%;
+  }
+  .animateBox-top {
+    background:yellowgreen;
   }
 
-  .message > span {
-    display: inline-block;
-    height: 1vh;
-    width: 1vh;
-    border-radius: 100%;
-    background: yellow;
+  .animateBox-bottom {
+    background:yellow;
+  }
+
+  .message > p {
+
   }
 
   #logobox {
