@@ -11,8 +11,16 @@
       </div>
       <div v-inview:parent="'animate'">
         <div class="animate message" :animate-toggle="'fadeInDown'">
+          <div class="animateBox">
+              <div class="animateBox-top"></div>
+              <div class="animateBox-bottom"></div>
+          </div>
           <p>グループに参加してビンゴを楽しみましょう！！</p>
-        </div>  
+          <div class="animateBox">
+              <div class="animateBox-top"></div>
+              <div class="animateBox-bottom"></div>
+          </div>
+        </div> 
       </div>
       <div id="mainItems">
         <div class="items-name">
@@ -82,6 +90,25 @@
     font-weight: 900;
     text-align: center;
     margin: 3vh 0;
+    display: flex;
+  }
+
+  .message > .animateBox {
+    height: 2vh;
+    width: 2vh;
+    background: red;
+  }
+
+  .message > p {
+    display: inline;
+  }
+
+  .message > span {
+    display: inline-block;
+    height: 1vh;
+    width: 1vh;
+    border-radius: 100%;
+    background: yellow;
   }
 
   #logobox {
