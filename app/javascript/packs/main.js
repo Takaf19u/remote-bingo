@@ -10,6 +10,7 @@ import router from './router.js';
 import Inview from 'vueinview'
 import axios from "axios";
 import VueAxiosPlugin from "plugins/vue-axios.js"; 
+import Hamburger from "./components/hamburger.vue"
 
 Vue.use(VueAxiosPlugin, { axios: axios })
 Vue.use(Inview)
@@ -17,7 +18,10 @@ Vue.use(Inview)
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#app',
-    router
+    router,
+    components: {
+      hamberger: Hamburger
+    }
   })
 });
 
