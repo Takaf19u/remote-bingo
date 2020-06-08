@@ -25,11 +25,9 @@
         </div> 
       </div>
       <div class="contents-name">
-        <div v-inview:parent="'animate'">
-          <div :animate-toggle="'fadeIn'">
-            <p>CONTENTS</p>
-          </div> 
-        </div>
+        <div v-inview:animate="'slideInLeft'">
+          <p class="contents-name--item">CONTENTS</p>
+        </div> 
       </div>
       <div id="mainItems">
         <div class="items-name">
@@ -60,7 +58,7 @@
 
   #toppage {
     width: 100%;
-    padding-top: 8vh;
+    padding: 8vh 3vh 0;
     overflow: hidden;
   }
   #topItems {
@@ -97,7 +95,7 @@
     font-size: 3.5vh;
     color:rgb(248, 8, 188);
     font-weight: 900;
-    margin: 3vh 0;
+    margin: 3vh 0 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,8 +190,17 @@
 	}
 }
 
-  .message > p {
+  .contents-name {
+    margin-top: 10vh;
+    font-size: 10vh;
+    
+  }
 
+  .contents-name--item {
+    font-family: 'Bungee Outline', cursive;
+    text-shadow: 3px 5px rgb(100, 100, 98);
+    display: inline;
+    border-bottom: solid 1px rgb(100, 100, 98);
   }
 
   #logobox {
@@ -201,7 +208,6 @@
     user-select: none;
     margin: 10px auto;
     position: relative;
-
   }
   
   .logo {
