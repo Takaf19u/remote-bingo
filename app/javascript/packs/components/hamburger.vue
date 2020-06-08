@@ -4,9 +4,9 @@
       <div class="inner">
         <ul>
           <li class="username">ようこそ 〇〇さん</li>
-          <li><a href="#">Text</a></li>
-          <li><a href="#">Text</a></li>
-          <li><a href="#">Text</a></li>
+          <li><a href="#" class="li-link">Text</a></li>
+          <li><a href="#" class="li-link">Text</a></li>
+          <li @click="logout" ><p class="li-link">ログアウト</p></li>
         </ul>
       </div>
     </nav>
@@ -21,6 +21,8 @@
 
 
 <script>
+  import axios from "axios";
+
   export default {
     data: function () {
       return {
@@ -37,6 +39,13 @@
       this.mask  = document.getElementById('mask');
     },
     methods: {
+      logout() {
+        axios.delete(`/users/sign_out`).then((res) => {
+          window.location.href = "/";
+        }, (error) => {
+          console.log(error);
+        });
+      },
       navbtn() {
         if ( this.nav.className == this.open ) {
           this.btnView = false;
@@ -49,6 +58,7 @@
       }
     }
   }
+
 </script>
 
 
@@ -80,13 +90,14 @@ nav {
         margin: 0;
         border-bottom: 1px solid rgb(121, 118, 118);
         width: 100%;
-        & a {
+        & .li-link {
           color: white;
           display: block;
           font-size: 14px;
           padding: 15px;
           text-decoration: none;
           transition-duration: 0.2s;
+          cursor: pointer;
         }
       }
       .username {
