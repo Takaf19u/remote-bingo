@@ -45,12 +45,24 @@
               <p>Group</p>
             </div>
           </router-link>
-          <div @click="logout" style="color: white">logout</div>
-          <router-link to="/users/sign_up">new</router-link>
         </div>
       </div>
     </div>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data: function () {
+    return {
+    }
+  },
+  methods: {
+
+  }
+}
+</script>
 
 
 <style scoped>
