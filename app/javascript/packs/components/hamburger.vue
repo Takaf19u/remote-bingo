@@ -3,7 +3,7 @@
     <nav>
       <div class="inner">
         <ul>
-          <li><p>ようこそ〇〇さん</p></li>
+          <li class="username">ようこそ 〇〇さん</li>
           <li><a href="#">Text</a></li>
           <li><a href="#">Text</a></li>
           <li><a href="#">Text</a></li>
@@ -71,7 +71,6 @@ nav {
   z-index: 3;
   opacity: 0;
   & .inner {
-    padding: 25px;
     & ul {
       list-style: none;
       margin: 0;
@@ -80,14 +79,21 @@ nav {
         position: relative;
         margin: 0;
         border-bottom: 1px solid rgb(121, 118, 118);
+        width: 100%;
         & a {
           color: white;
           display: block;
           font-size: 14px;
-          padding: 1em;
+          padding: 15px;
           text-decoration: none;
           transition-duration: 0.2s;
         }
+      }
+      .username {
+        padding: 15px;
+        text-align: center;
+        background:rgba(43, 52, 148, 0.658);
+        border-bottom: none;
       }
     }
   }
@@ -121,6 +127,7 @@ nav .inner ul li a:hover {
   width: 30px;
   height: 30px;
   transition: all .5s;
+  padding: 5px;
   cursor: pointer;
   z-index: 3;
   & span {
@@ -129,7 +136,7 @@ nav .inner ul li a:hover {
     left: 0;
     width: 30px;
     height: 2px;
-    background-color: #333;
+    background-color: rgb(209, 205, 205);
     border-radius: 4px;
     transition: all .5s;
     &:nth-child(1) {
@@ -142,6 +149,20 @@ nav .inner ul li a:hover {
       bottom: 4px;
     }
   }
+  &::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+    border: 1.2px solid rgb(209, 205, 205);
+    border-radius: 5px;
+  }
+}
+
+.open #toggle_btn::before {
+  border: none;
 }
 
 .open #toggle_btn span {
