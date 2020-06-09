@@ -11,19 +11,21 @@
 </template>
 
 <script>
-import Login from "./user/userLogin.vue";
-import New from "./user/userNew.vue";
+import Login from "./form/userLogin.vue";
+import New from "./form/userNew.vue";
+import CreateGroup from "./form/createGroup.vue";
 import axios from "axios";
 
 export default {
   components: {
     login: Login,
     new: New,
+    createGroup: CreateGroup
   },
   component: null,
   data: function() {
     return {
-      componentTypes: ["login", "new"],
+      componentTypes: ["login", "new", "createGroup"],
       current: 0,
     };
   },
@@ -41,6 +43,8 @@ export default {
         this.current = 0
       } else if(path.match(/sign_up/)) {
         this.current = 1
+      } else if(path.match(/createGroup/)) {
+        this.current = 2
       };
     },
   }
@@ -120,7 +124,6 @@ export default {
         position: absolute;
           top: -15px;
           left: 5px;
-        color: rgb(0, 110, 255);
         font-size: 1em;
         background: black;
         padding: 0 2px;
@@ -131,10 +134,9 @@ export default {
         color: white;
         font-size: 2.8vh;
         font-weight: 200;
-        border: solid 2px rgb(0, 110, 255);
         border-radius: 5px;
         outline: none;
-        background: transparent;
+        background-color: transparent;
         box-shadow: 0px 0px 0px 1px rgb(129, 128, 128);
         /* placeholderの色 */
         &::placeholder {
@@ -150,6 +152,11 @@ export default {
         &::-ms-input-placeholder {
           font-size: 0.7em;
           color: rgba(177, 175, 175, 0.897);
+        }
+        &:-webkit-autofill {
+          animation-name: onAutoFillStart;
+          transition: background-color 50000s ease-in-out 0s;
+          -webkit-text-fill-color: white !important;
         }
       }
     }
@@ -196,6 +203,8 @@ export default {
       }
     }
   }
+
+  @keyframes onAutoFillStart { from {} to {}}
 
 
 </style>
