@@ -20,7 +20,7 @@
         <input v-model="form.password_confirmation" autocomplete="new-password" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
       </div>
       <div class="formbtn">
-        <router-link to="/main" class="formbtn--item">Back</router-link>
+        <router-link to="/" class="formbtn--item">Back</router-link>
         <button type="submit" class="formbtn--item">Create</button>
       </div>
     </form>
@@ -60,5 +60,13 @@ export default {
   h1 {
     color: rgb(0, 132, 255);
     text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 40px rgb(17, 180, 255), 0 0 50px rgb(17, 160, 255), 0 0 60px rgb(18, 124, 245), 0 0 80px rgb(18, 124, 245);
+  }
+
+
+  .inputBox label {
+    color: rgb(0, 132, 255);
+  }
+  .inputBox input {
+    border: solid 2px rgb(0, 132, 255);
   }
 </style>
