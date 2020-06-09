@@ -4,6 +4,7 @@
     <div class="bar" id="right-bar"></div>
     <div class="mainContents">
       <form @submit.prevent = "create">
+        
         <div class="inputBox" id="box1">
           <label for="masterName" v-bind:class="{ 'label1': labelView[0] }" class="label">MASTER NAME</label>
           <input name="text1" type="text" @focus="inputFocus(0)" @blur="inputBlur(0)" id="masterName" placeholder="主催者名(6文字以上)" autofocus v-model="form.masterName" maxlength="6">
@@ -19,7 +20,7 @@
         </div>
 
         <div class="formbtn">
-          <router-link to="/" class="formbtn--item">Back</router-link>
+          <router-link to="/main" class="formbtn--item">Back</router-link>
           <input name="submit" class="formbtn--item" type="submit" id="submit" value="Create">
         </div>
       </form>
@@ -43,7 +44,8 @@ export default {
   },
   methods: {
     create: function () {
-      axios.post('/api/books', { book: this.recreation }).then((res) => {
+      axios.post('/groups', { group: this.form }).then((res) => {
+          debugger
           this.$router.push({ path: '/' });
         }, (error) => {
           console.log(error);
