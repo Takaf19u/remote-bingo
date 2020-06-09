@@ -18,7 +18,8 @@
 
   %body
     #app
-      %hamberger
+      -if user_signed_in?
+        %hamberger
       %router-view
       = yield
   = javascript_pack_tag 'main'
