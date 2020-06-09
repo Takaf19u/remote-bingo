@@ -11,7 +11,8 @@ const router = new VueRouter({
   mode: 'history',
     routes: [
     { path: '/', component: Top },
-    { path: '/createGroup', component: CreateGroup },
+    // { path: '/createGroup', component: CreateGroup },
+    { path: '/createGroup', component: UserForm },
     { path: '/users/sign_up', component: UserForm },
     { path: '/users/sign_in', component: UserForm },
     { path: '/main', component: Main },
