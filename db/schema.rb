@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2020_05_30_090917) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "groupName", null: false
+    t.text "rands"
     t.string "password_digest", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
