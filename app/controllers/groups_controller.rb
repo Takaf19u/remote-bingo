@@ -20,11 +20,11 @@ class GroupsController < ApplicationController
   end
 
   def update
-
+    group = Group.find_by(id: params[:id])
+    group.update(rands: params[:rands])
   end
 
   def rands
-    binding.pry
     group = Group.find_by(id: params[:id])
 
     respond_to do |format|
@@ -34,7 +34,6 @@ class GroupsController < ApplicationController
 
   private 
   def group_params
-      # 子要素のstrong parameterを書くことで、自動で子要素に親要素のidもふられる。explanatinテーブルにあるrecreation_idに親要素のidがふられます。
       params.require(:groups).permit(:groupName, :password, :password_confirmation ).merge(user_id: current_user.id)
   end
 

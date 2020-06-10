@@ -3,6 +3,7 @@
     <div id="randomBox">
       <span></span>
     </div>
+    <div @click="start()">test</div>
     aabb
   </div> 
 </template>
@@ -23,29 +24,32 @@ export default {
     this.get_rands();
   },
   methods: {
+    // グループですでに表示済みの数字を取得
     get_rands() {
       axios.get(`/groups/${this.$route.params['id']}/rands`, {}).then((res) => {
-        debugger
-        let target = res.data.split(',');
-        this.rands = target.slice();
+        if (res.data !== null && res.data !== ""){
+          let target = res.data.split(',');
+          this.rands = target.slice();
+        };
 
         }, (error) => {
           console.log(error);
       });
     },
+    // グループの表示済み数字リストを更新
     save_rands(text) {
-      axios.patch(`/groups/${this.$route.params['id']}`, { rands: this.text }).then((res) => {
-          // this.$router.push({ path: res.data });
+      axios.patch(`/groups/${this.$route.params['id']}`, { rands: text }).then((res) => {
+          console.log(this.rands);
         }, (error) => {
           console.log(error);
       });
     },
-    Start(){
+    start(){
       let h = true;
       let saveText = "";
       let number = null;
       while(h) {
-        number = intRandom(this.min, this.max);
+        number = this.intRandom(this.min, this.max);
         // 配列に数字が含まれていない場合
         if(this.rands.indexOf( number ) == -1) {
           this.rands.push(number);
