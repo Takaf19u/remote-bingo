@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/users/sign_up', to: 'groups#index'
   get '/users/sign_in', to: 'groups#index'
   get '/main', to: 'groups#index'
+  get '/createGroup/:id', to: 'groups#index'
   
 
   # デバイスのルーティングをカスタマイズ
