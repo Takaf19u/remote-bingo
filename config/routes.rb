@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :groups, only: [:index, :create] do
-    collection do
-      get :createGroup
+  resources :groups, only: [:index, :create, :update] do
+    member do
+      get :rands
     end
   end
   

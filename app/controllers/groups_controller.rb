@@ -15,8 +15,20 @@ class GroupsController < ApplicationController
     end
     
     respond_to do |format|
-      binding.pry
       format.json {render json: url }
+    end
+  end
+
+  def update
+
+  end
+
+  def rands
+    binding.pry
+    group = Group.find_by(id: params[:id])
+
+    respond_to do |format|
+      format.json {render json: group.rands }
     end
   end
 
