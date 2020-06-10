@@ -1,7 +1,6 @@
 import Vue from 'vue/dist/vue.esm';
 import VueRouter from 'vue-router';
 import Top from './components/top.vue';
-import CreateGroup from './components/createGroup.vue';
 import UserForm from './components/form.vue';
 import Main from './components/mainContents.vue';
 
