@@ -21,5 +21,8 @@ export default {
 
 
 <style scoped lang="scss">
+  #group {
+    height: 100%;
+}
 
 </style>
