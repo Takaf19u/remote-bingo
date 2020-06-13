@@ -10,12 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_090917) do
+ActiveRecord::Schema.define(version: 2020_06_13_111122) do
+
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "rand_number"
+    t.integer "create_count", default: 0
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_cards_on_group_id"
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "groupName", null: false
     t.text "rands"
     t.string "password_digest", null: false
+    t.integer "create_count", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,5 +49,7 @@ ActiveRecord::Schema.define(version: 2020_05_30_090917) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cards", "groups"
+  add_foreign_key "cards", "users"
   add_foreign_key "groups", "users"
 end
