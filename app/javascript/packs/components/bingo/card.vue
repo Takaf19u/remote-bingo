@@ -78,7 +78,6 @@ export default {
   created: function(){
     this.get_rands();
     this.get_cards();
-    this.set_activeNums();
   },
   mounted: function(){
     this.numberbox = document.getElementById("numberbox");
@@ -87,29 +86,30 @@ export default {
     this.shutter = document.getElementById("shutter");
     this.randbtn_text = document.getElementById("randbtn-text");
   },
+  watch: {
+    cardNumber: function () {
+      this.set_activeNums();
+    }
+  },
   methods: {
+    // 全てのナンバーに対し確認処理(create時呼び出し)
     set_activeNums() {
-      for(let i = 0; cardNumber.length; ) {
-         this.set_active
-        if(this.rands.indexOf( num ) == -1) {
-          this.activeNums = setFalse.push(true);
+      const rands = this.cardNumber.map(function(value) {
+        if(this.rands.indexOf( value ) == -1) {
+          return false;
         } else {
-          this.activeNums = setFalse.push(false);
+           return true;
         };
-        i++;
-      };
-      this.activeNums = 
+      }.bind(this));
+      this.activeNums = rands.slice();
     },
+    // すでに表示した数字と一致しているか判定
     set_active(num) {
-      while( setFalse.length < 25) {
-        if(this.rands.indexOf( num ) == -1) {
-          setFalse.push(true);
-        } else {
-          setFalse.push(false);
-        };
-        i++;
+      if(this.rands.indexOf( num ) == -1) {
+        return false;
+      } else {
+        return true;
       };
-      return setFalse
     },
     // カードの数値を取得（なければ新規作成)
     get_cards() {
@@ -299,6 +299,9 @@ export default {
         width: calc(100% / 5);
         border: 1px solid black;
       }
+      & .active {
+        background: yellow;
+      }
       .startbtn {
         padding-top: 3.5vh;
         font-size: 4vh;
@@ -308,10 +311,6 @@ export default {
       }
     }
   }
-}
-
-.active {
-  background: yellow;
 }
 
 #randomBox {
