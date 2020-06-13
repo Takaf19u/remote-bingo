@@ -4,6 +4,7 @@ class CreateGroups < ActiveRecord::Migration[5.2]
       t.string      :groupName,          null: false
       t.text        :rands
       t.string      :password_digest,    null: false
+      t.integer     :create_count,       default: 0
       t.references  :user,               null: false,  foreign_key: true
       t.timestamps
     end
