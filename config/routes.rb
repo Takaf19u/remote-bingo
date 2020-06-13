@@ -19,5 +19,7 @@ Rails.application.routes.draw do
       get :rands
     end
   end
+
+  resources :cards, only: [ :show, :create, :update]
   
 end
