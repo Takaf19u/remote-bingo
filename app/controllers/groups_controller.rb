@@ -8,14 +8,14 @@ class GroupsController < ApplicationController
     group = Group.new(group_params)
     if group.save
       flash[:notice] = "グループを作成しました。"
-      url = "/createGroup/#{group.id}"
+      id = group.id
     else
       flash.now[:alert] = 'グループの作成に失敗しました。'
-      url = "/createGroup"
+      id = 0
     end
     
     respond_to do |format|
-      format.json {render json: url }
+      format.json {render json: {id: id }}
     end
   end
 
