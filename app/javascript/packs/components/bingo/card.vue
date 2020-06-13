@@ -13,39 +13,39 @@
       </div>
       <div id="mainContents">
           <div id="row1">
-            <span id="0">{{ cardNumber[0] }}</span>
-            <span id="1">{{ cardNumber[1] }}</span>
-            <span id="3">{{ cardNumber[2] }}</span>
-            <span id="4">{{ cardNumber[3] }}</span>
-            <span id="5">{{ cardNumber[4] }}</span>
+            <span id="0" v-bind:class="{ 'active': activeNums[0] }">{{ cardNumber[0] }}</span>
+            <span id="1" v-bind:class="{ 'active': activeNums[1] }">{{ cardNumber[1] }}</span>
+            <span id="2" v-bind:class="{ 'active': activeNums[2] }">{{ cardNumber[2] }}</span>
+            <span id="3" v-bind:class="{ 'active': activeNums[3] }">{{ cardNumber[3] }}</span>
+            <span id="4" v-bind:class="{ 'active': activeNums[4] }">{{ cardNumber[4] }}</span>
           </div>
           <div id="row2">
-            <span id="6">{{ cardNumber[6] }}</span>
-            <span id="7">{{ cardNumber[7] }}</span>
-            <span id="8">{{ cardNumber[8] }}</span>
-            <span id="9">{{ cardNumber[9] }}</span>
-            <span id="10">{{ cardNumber[10] }}</span>
+            <span id="5" v-bind:class="{ 'active': activeNums[5] }">{{ cardNumber[5] }}</span>
+            <span id="6" v-bind:class="{ 'active': activeNums[6] }">{{ cardNumber[6] }}</span>
+            <span id="7" v-bind:class="{ 'active': activeNums[7] }">{{ cardNumber[7] }}</span>
+            <span id="8" v-bind:class="{ 'active': activeNums[8] }">{{ cardNumber[8] }}</span>
+            <span id="9" v-bind:class="{ 'active': activeNums[9] }">{{ cardNumber[9] }}</span>
          </div>
           <div id="row3">
-            <span id="11">{{ cardNumber[11] }}</span>
-            <span id="12">{{ cardNumber[12] }}</span>
-            <span id="13">START</span>
-            <span id="14">{{ cardNumber[13] }}</span>
-            <span id="15">{{ cardNumber[14] }}</span>
+            <span id="10" v-bind:class="{ 'active': activeNums[10] }">{{ cardNumber[10] }}</span>
+            <span id="11" v-bind:class="{ 'active': activeNums[11] }">{{ cardNumber[11] }}</span>
+            <span id="12" class="startbtn" v-bind:class="{ 'active': activeNums[12] }">START</span>
+            <span id="13" v-bind:class="{ 'active': activeNums[13] }">{{ cardNumber[13] }}</span>
+            <span id="14" v-bind:class="{ 'active': activeNums[14] }">{{ cardNumber[14] }}</span>
          </div>
           <div id="row4">
-            <span id="16">{{ cardNumber[15] }}</span>
-            <span id="17">{{ cardNumber[16] }}</span>
-            <span id="18">{{ cardNumber[17] }}</span>
-            <span id="19">{{ cardNumber[18] }}</span>
-            <span id="20">{{ cardNumber[19] }}</span>
+            <span id="15" v-bind:class="{ 'active': activeNums[15] }">{{ cardNumber[15] }}</span>
+            <span id="16" v-bind:class="{ 'active': activeNums[16] }">{{ cardNumber[16] }}</span>
+            <span id="17" v-bind:class="{ 'active': activeNums[17] }">{{ cardNumber[17] }}</span>
+            <span id="18" v-bind:class="{ 'active': activeNums[18] }">{{ cardNumber[18] }}</span>
+            <span id="19" v-bind:class="{ 'active': activeNums[19] }">{{ cardNumber[19] }}</span>
          </div>
           <div id="row5">
-            <span id="21">{{ cardNumber[20] }}</span>
-            <span id="22">{{ cardNumber[21] }}</span>
-            <span id="23">{{ cardNumber[22] }}</span>
-            <span id="24">{{ cardNumber[23] }}</span>
-            <span id="25">{{ cardNumber[24] }}</span>
+            <span id="20" v-bind:class="{ 'active': activeNums[20] }">{{ cardNumber[20] }}</span>
+            <span id="21" v-bind:class="{ 'active': activeNums[21] }">{{ cardNumber[21] }}</span>
+            <span id="22" v-bind:class="{ 'active': activeNums[22] }">{{ cardNumber[22] }}</span>
+            <span id="23" v-bind:class="{ 'active': activeNums[23] }">{{ cardNumber[23] }}</span>
+            <span id="24" v-bind:class="{ 'active': activeNums[24] }">{{ cardNumber[24] }}</span>
           </div>
 
       </div>
@@ -65,6 +65,7 @@ export default {
         rand_number: null,
         group_id: null,
       },
+      activeNums: [],
       numberbox: null,
       top_shutter: null,
       bottom_shutter: null,
@@ -77,6 +78,7 @@ export default {
   created: function(){
     this.get_rands();
     this.get_cards();
+    this.set_activeNums();
   },
   mounted: function(){
     this.numberbox = document.getElementById("numberbox");
@@ -86,6 +88,29 @@ export default {
     this.randbtn_text = document.getElementById("randbtn-text");
   },
   methods: {
+    set_activeNums() {
+      for(let i = 0; cardNumber.length; ) {
+         this.set_active
+        if(this.rands.indexOf( num ) == -1) {
+          this.activeNums = setFalse.push(true);
+        } else {
+          this.activeNums = setFalse.push(false);
+        };
+        i++;
+      };
+      this.activeNums = 
+    },
+    set_active(num) {
+      while( setFalse.length < 25) {
+        if(this.rands.indexOf( num ) == -1) {
+          setFalse.push(true);
+        } else {
+          setFalse.push(false);
+        };
+        i++;
+      };
+      return setFalse
+    },
     // カードの数値を取得（なければ新規作成)
     get_cards() {
       axios.get(`/cards/${this.$route.params['id']}`, {}).then((res) => {
@@ -134,11 +159,17 @@ export default {
     // グループの表示済み数字リストを更新
     save_rands(text) {
       axios.patch(`/groups/${this.$route.params['id']}`, { rands: text }).then((res) => {
-          console.log(this.rands);
         }, (error) => {
           console.log(error);
       });
     },
+    strtbtn(){
+      
+    },
+    // target_split(target, array){
+    //   let copy = target.split(',');
+    //   array = copy.slice();
+    // },
     intRandom(){
       let rands = [];
       while( rands.length < 25 ) {
@@ -219,6 +250,7 @@ export default {
     align-items: center;
   }
 .card {
+  font-family: 'Righteous', cursive;
   background: red;
   width: 75vh;
   height: 90vh;
@@ -226,6 +258,7 @@ export default {
     position: relative;
     padding: 4% 0 7%;
     background: yellow;
+    height: 25%;
     .randbtn {
       display: inline-block;
       position: absolute;
@@ -248,11 +281,37 @@ export default {
     }
   }
   #mainContents {
-    & > div > span {
-      color: black;
+    background: green;
+    height: calc(100% - 25%);
+    padding: 5vh 2%;
+    & div {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
       background: white;
+      height: calc(100% / 5);
+      width: 100%;
+      & span {
+        font-size: 5vh;
+        padding-top: 3vh;
+        color: black;
+        width: calc(100% / 5);
+        border: 1px solid black;
+      }
+      .startbtn {
+        padding-top: 3.5vh;
+        font-size: 4vh;
+        color: indianred;
+        -webkit-animation: startbtn 1s linear infinite;
+        animation: startbtn 1s linear infinite;
+      }
     }
   }
+}
+
+.active {
+  background: yellow;
 }
 
 #randomBox {
@@ -313,6 +372,17 @@ export default {
   }
 }
 
+@-webkit-keyframes startbtn {
+	0% {
+    padding-top: 3.5vh;
+  }
+	50% {
+    padding-top: 3vh;
+	}
+	100% {
+    padding-top: 3.5vh;
+	}
+}
 
 @-webkit-keyframes borderloading {
 	0% {
