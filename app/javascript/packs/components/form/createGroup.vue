@@ -34,12 +34,32 @@ export default {
         password: '',
         password_confirmation: "",
       },
+      card: {
+        rand_number: "",
+        group_id: null,
+      },
       labelView: [ true, false, false ],
     }
   },
   methods: {
+    // グループの作成
     createGroup() {
       axios.post('/groups', { groups: this.form }).then((res) => {
+          if(res.data.id == 0) {
+            this.$router.push({ path: "/createGroup" });
+          }else if(res.data.id > 0) {
+            this.card.group_id = res.data.id;
+            this.card.rand_number = this.intRandom();
+            this.createCard();
+          }
+  
+        }, (error) => {
+          console.log(error);
+      });
+    },
+    // グループ作成者のカードを作成
+    createCard() {
+      axios.post('/cards', { cards: this.card }).then((res) => {
           this.$router.push({ path: res.data });
         }, (error) => {
           console.log(error);
@@ -56,6 +76,16 @@ export default {
     },
     inputBlur(id) {
       this.$set(this.labelView, id, false);
+    },
+    intRandom(){
+      let rands = [];
+      while( rands.length < 25 ) {
+        let num = Math.floor( Math.random() * (75 - 1 + 1)) + 1;
+        if(rands.indexOf( num ) == -1) {
+          rands.push(num);
+        };
+      };
+      return rands.join(",");
     },
   }
  

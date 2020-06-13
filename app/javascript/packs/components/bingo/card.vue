@@ -30,22 +30,22 @@
             <span id="11">{{ cardNumber[11] }}</span>
             <span id="12">{{ cardNumber[12] }}</span>
             <span id="13">START</span>
-            <span id="14">{{ cardNumber[14] }}</span>
-            <span id="15">{{ cardNumber[15] }}</span>
+            <span id="14">{{ cardNumber[13] }}</span>
+            <span id="15">{{ cardNumber[14] }}</span>
          </div>
           <div id="row4">
-            <span id="16">{{ cardNumber[16] }}</span>
-            <span id="17">{{ cardNumber[17] }}</span>
-            <span id="18">{{ cardNumber[18] }}</span>
-            <span id="19">{{ cardNumber[19] }}</span>
-            <span id="20">{{ cardNumber[20] }}</span>
+            <span id="16">{{ cardNumber[15] }}</span>
+            <span id="17">{{ cardNumber[16] }}</span>
+            <span id="18">{{ cardNumber[17] }}</span>
+            <span id="19">{{ cardNumber[18] }}</span>
+            <span id="20">{{ cardNumber[19] }}</span>
          </div>
           <div id="row5">
-            <span id="21">{{ cardNumber[21] }}</span>
-            <span id="22">{{ cardNumber[22] }}</span>
-            <span id="23">{{ cardNumber[23] }}</span>
-            <span id="24">{{ cardNumber[24] }}</span>
-            <span id="25">{{ cardNumber[25] }}</span>
+            <span id="21">{{ cardNumber[20] }}</span>
+            <span id="22">{{ cardNumber[21] }}</span>
+            <span id="23">{{ cardNumber[22] }}</span>
+            <span id="24">{{ cardNumber[23] }}</span>
+            <span id="25">{{ cardNumber[24] }}</span>
           </div>
 
       </div>
@@ -61,6 +61,10 @@ export default {
     return {
       rands: [],
       cardNumber: [],
+      card: {
+        rand_number: null,
+        group_id: null,
+      },
       numberbox: null,
       top_shutter: null,
       bottom_shutter: null,
@@ -72,6 +76,7 @@ export default {
   },
   created: function(){
     this.get_rands();
+    this.get_cards();
   },
   mounted: function(){
     this.numberbox = document.getElementById("numberbox");
@@ -81,6 +86,39 @@ export default {
     this.randbtn_text = document.getElementById("randbtn-text");
   },
   methods: {
+    // カードの数値を取得（なければ新規作成)
+    get_cards() {
+      axios.get(`/cards/${this.$route.params['id']}`, {}).then((res) => {
+          let res_number = res.data.res_number;
+          let target = "";
+
+          if (res_number == null && res_number == ""){
+            let h = this.createCard(h);
+            if(h === true) {
+              target = this.card.rand_number;
+            } else {
+              alert("カードの作成に失敗しました");
+              return false;
+            };
+          } else {
+            target = res_number;
+          };
+          let nums = target.split(',');
+          this.cardNumber = nums.slice();
+        }, (error) => {
+          console.log(error);
+      });
+    },
+    // カードを作成
+    createCard(h) {
+      this.card.group_id = this.$route.params['id'];
+      this.card.rand_number = intRandom();
+      axios.post('/cards', { cards: this.card }).then((res) => {
+          return true;
+        }, (error) => {
+          return false;
+      });
+    },
     // グループですでに表示済みの数字を取得
     get_rands() {
       axios.get(`/groups/${this.$route.params['id']}/rands`, {}).then((res) => {
@@ -100,6 +138,16 @@ export default {
         }, (error) => {
           console.log(error);
       });
+    },
+    intRandom(){
+      let rands = [];
+      while( rands.length < 25 ) {
+        let num = Math.floor( Math.random() * (75 - 1 + 1)) + 1;
+        if(rands.indexOf( num ) == -1) {
+          rands.push(num);
+        };
+      };
+      return rands.join(",");
     },
     startrandom(){
       let h = true;
