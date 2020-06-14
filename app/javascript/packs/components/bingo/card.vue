@@ -10,6 +10,7 @@
           <span id="numberbox"></span>
         </div>
       </div>
+      <div @click="judge_bingo"> aa</div>
       <div class="randbtn" @click="startrandom()"><span id="randbtn-text">Welcome!!</span></div>
       <div id="mainContents">
           <div id="row1">
@@ -260,10 +261,16 @@ export default {
       }.bind(this), 10);
     },
     judge_bingo() {
-      activeNums
-      const retVal = elms.every(elm => {
-        return (elm > 20);
-      });
+      let row = document.getElementById("row" + 1);
+      let active = row.getElementsByClassName("active");
+      debugger
+      // 行のビンゴ判定
+      if(active.length == 5){
+        alert("BINGO!!");
+      }
+      // const retVal = elms.every(elm => {
+      //   return (elm > 20);
+      // });
     }
   }
  
