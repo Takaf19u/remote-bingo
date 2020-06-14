@@ -9,8 +9,8 @@
           </div>
           <span id="numberbox"></span>
         </div>
-        <div class="randbtn" @click="startrandom()"><span id="randbtn-text">Welcome!!</span></div>
       </div>
+      <div class="randbtn" @click="startrandom()"><span id="randbtn-text">Welcome!!</span></div>
       <div id="mainContents">
           <div id="row1">
             <span id="0" v-bind:class="{ 'active': activeNums[0] }">{{ cardNumber[0] }}</span>
@@ -29,7 +29,10 @@
           <div id="row3">
             <span id="10" v-bind:class="{ 'active': activeNums[10] }">{{ cardNumber[10] }}</span>
             <span id="11" v-bind:class="{ 'active': activeNums[11] }">{{ cardNumber[11] }}</span>
-            <span id="12" class="startbtn" v-bind:class="{ 'active': activeNums[12] }">START</span>
+            <span id="12" v-bind:class="{ 'active': activeNums[12] }" class="startbtn" @click="strtbtn">
+              <div v-if="gameStart"><p>Game</p><p>START</p></div>
+              <div v-else><p class="sanka">参加中</p></div>
+            </span>
             <span id="13" v-bind:class="{ 'active': activeNums[13] }">{{ cardNumber[13] }}</span>
             <span id="14" v-bind:class="{ 'active': activeNums[14] }">{{ cardNumber[14] }}</span>
          </div>
@@ -59,6 +62,9 @@ import axios from "axios"
 export default {
   data() {
     return {
+      rescard: Object,
+      masterId: null,
+      gameStart: true,
       rands: [],
       cardNumber: [],
       card: {
@@ -87,8 +93,10 @@ export default {
     this.randbtn_text = document.getElementById("randbtn-text");
   },
   watch: {
-    cardNumber: function () {
-      this.set_activeNums();
+    gameStart: function () {
+      if(this.gameStart === false){
+        this.set_activeNums();
+      };
     }
   },
   methods: {
@@ -114,47 +122,59 @@ export default {
     // カードの数値を取得（なければ新規作成)
     get_cards() {
       axios.get(`/cards/${this.$route.params['id']}`, {}).then((res) => {
-          let res_number = res.data.res_number;
           let target = "";
-
-          if (res_number == null && res_number == ""){
-            let h = this.createCard(h);
-            if(h === true) {
-              target = this.card.rand_number;
-            } else {
-              alert("カードの作成に失敗しました");
-              return false;
-            };
+          this.rescard = res.data.card;
+          let res_number = res.data.card;
+          if (res_number == null){
+            this.createCard();
           } else {
-            target = res_number;
+            let target = res_number.rand_number.split(',');
+            this.cardNumber = target.slice();
+            this.gameStart_judge(this.cardNumber[12]);
           };
-          let nums = target.split(',');
-          this.cardNumber = nums.slice();
         }, (error) => {
           console.log(error);
       });
     },
     // カードを作成
-    createCard(h) {
+    createCard() {
       this.card.group_id = this.$route.params['id'];
-      this.card.rand_number = intRandom();
+      this.card.rand_number = this.cardRandom();
       axios.post('/cards', { cards: this.card }).then((res) => {
-          return true;
+          let target = this.card.rand_number.split(',');
+          this.cardNumber = target.slice();
+          this.gameStart_judge(this.cardNumber[12]);
         }, (error) => {
+          alert("カードの作成に失敗しました");
           return false;
       });
+    },
+    gameStart_judge(target) {
+      if(target == "S") {
+        this.gameStart = false;
+      } else {
+        this.gameStart = true;
+      };
     },
     // グループですでに表示済みの数字を取得
     get_rands() {
       axios.get(`/groups/${this.$route.params['id']}/rands`, {}).then((res) => {
-        if (res.data !== null && res.data !== ""){
-          let target = res.data.split(',');
+        let rands = res.data.rands;
+        this.masterId = res.data.user_id;
+        if (rands !== null || rands !== ""){
+          let target = rands.split(',');
           this.rands = target.slice();
         };
-
         }, (error) => {
           console.log(error);
       });
+    },
+    // スタートボタンの処理
+    strtbtn(){
+      if(this.cardNumber[12] != "S") {
+        this.cardNumber[12] = "S";
+        this.save_cards(this.cardNumber.join(","));
+      };
     },
     // グループの表示済み数字リストを更新
     save_rands(text) {
@@ -163,19 +183,24 @@ export default {
           console.log(error);
       });
     },
-    strtbtn(){
-      
+    // グループの表示済み数字リストを更新
+    save_cards(text) {
+      axios.patch(`/cards/${this.rescard.id}`, { rand_number: text }).then((res) => {
+          this.gameStart = false;
+        }, (error) => {
+          console.log(error);
+      });
     },
-    // target_split(target, array){
-    //   let copy = target.split(',');
-    //   array = copy.slice();
-    // },
-    intRandom(){
+    cardRandom(){
       let rands = [];
-      while( rands.length < 25 ) {
-        let num = Math.floor( Math.random() * (75 - 1 + 1)) + 1;
-        if(rands.indexOf( num ) == -1) {
-          rands.push(num);
+      while( rands.length < 26 ) {
+        if(rands.length == 12) {
+          rands.push("");
+        } else {
+          let num = Math.floor( Math.random() * (75 - 1 + 1)) + 1;
+          if(rands.indexOf( num ) == -1) {
+            rands.push(num);
+          };
         };
       };
       return rands.join(",");
@@ -234,6 +259,12 @@ export default {
         }
       }.bind(this), 10);
     },
+    judge_bingo() {
+      activeNums
+      const retVal = elms.every(elm => {
+        return (elm > 20);
+      });
+    }
   }
  
 }
@@ -254,18 +285,15 @@ export default {
   background: red;
   width: 75vh;
   height: 90vh;
+  margin: 0 5px;
   &--top {
     position: relative;
-    padding: 4% 0 7%;
+    padding: 5% 0;
     background: yellow;
-    height: 25%;
-    .randbtn {
+    height: 24%;
+  }
+  & .randbtn {
       display: inline-block;
-      position: absolute;
-        bottom: -15px;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
       color: black;
       text-align: center;
       cursor: pointer;
@@ -278,13 +306,12 @@ export default {
         width: 20vh;
         border-radius: 10px;
       }
-    }
   }
   #mainContents {
     background: green;
     height: calc(100% - 25%);
-    padding: 5vh 2%;
-    & div {
+    padding: 3vh;
+    & > div {
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -292,7 +319,7 @@ export default {
       background: white;
       height: calc(100% / 5);
       width: 100%;
-      & span {
+      & > span {
         font-size: 5vh;
         padding-top: 3vh;
         color: black;
@@ -303,11 +330,15 @@ export default {
         background: yellow;
       }
       .startbtn {
-        padding-top: 3.5vh;
         font-size: 4vh;
         color: indianred;
         -webkit-animation: startbtn 1s linear infinite;
         animation: startbtn 1s linear infinite;
+        & .sanka {
+          padding-top: 15%;
+          font-weight: 700;
+          margin: 0 auto;
+        }
       }
     }
   }
@@ -373,13 +404,13 @@ export default {
 
 @-webkit-keyframes startbtn {
 	0% {
-    padding-top: 3.5vh;
+    padding-top: 1.5vh;
   }
 	50% {
-    padding-top: 3vh;
+    padding-top: 1vh;
 	}
 	100% {
-    padding-top: 3.5vh;
+    padding-top: 1.5vh;
 	}
 }
 
