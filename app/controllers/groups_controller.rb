@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
     group = Group.find_by(id: params[:id])
 
     respond_to do |format|
-      format.json {render json: group.rands }
+      format.json {render json: group }
     end
   end
 

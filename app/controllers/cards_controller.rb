@@ -4,9 +4,14 @@ class CardsController < ApplicationController
     card = Card.find_by( group_id: params[:id], user_id: current_user.id )
 
     respond_to do |format|
-      format.json {render json: {res_number: card.rand_number} }
+      format.json {render json: {card: card} }
     end
   end 
+
+  def update
+    card = Card.find_by(id: params[:id])
+    card.update(rand_number: params[:rand_number])
+  end
 
   def create
     card = Card.new(card_params)
