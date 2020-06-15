@@ -73,6 +73,7 @@ export default {
         group_id: null,
       },
       activeNums: [],
+      row: [],
       numberbox: null,
       top_shutter: null,
       bottom_shutter: null,
@@ -92,6 +93,10 @@ export default {
     this.bottom_shutter = document.getElementById("bottom-shutter");
     this.shutter = document.getElementById("shutter");
     this.randbtn_text = document.getElementById("randbtn-text");
+
+    for(let i = 1; i < 6; i++){
+      this.row.push(document.getElementById("row" + i));
+    };
   },
   watch: {
     gameStart: function () {
@@ -261,13 +266,26 @@ export default {
       }.bind(this), 10);
     },
     judge_bingo() {
-      let row = document.getElementById("row" + 1);
-      let active = row.getElementsByClassName("active");
-      debugger
       // 行のビンゴ判定
-      if(active.length == 5){
-        alert("BINGO!!");
-      }
+      debugger
+      for(let i=1; i < 6; i++){
+        let active = this.row[i-1].getElementsByClassName("active");
+        console.log(this.row[i-1].children);
+        if(active.length == 5){
+          console.log("ビンゴ");
+        } else {
+          console.log(this.row[i-1].id);
+        };
+      };
+
+      // for(let i=1; i < 6; i++){
+      //   let active = row[i-1].getElementsByClassName("active");
+      //   if(active.length == 5){
+      //     console.log("ビンゴ");
+      //   } else {
+      //     console.log(row.id);
+      //   };
+      // };
       // const retVal = elms.every(elm => {
       //   return (elm > 20);
       // });
