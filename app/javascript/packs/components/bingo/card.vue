@@ -95,8 +95,12 @@ export default {
     this.randbtn_text = document.getElementById("randbtn-text");
 
     for(let i = 1; i < 6; i++){
-      this.row.push(document.getElementById("row" + i));
+      let hash = {}
+      hash["row"] = document.getElementById("row" + i);
+      hash["children"] = hash.row.children;
+      this.row.push(hash);
     };
+    console.log(this.row);
   },
   watch: {
     gameStart: function () {
@@ -267,14 +271,30 @@ export default {
     },
     judge_bingo() {
       // 行のビンゴ判定
-      debugger
-      for(let i=1; i < 6; i++){
-        let active = this.row[i-1].getElementsByClassName("active");
-        console.log(this.row[i-1].children);
+      for(let i=0; i < 5; i++){
+        let active = this.row[i].row.getElementsByClassName("active");
         if(active.length == 5){
-          console.log("ビンゴ");
+          console.log("行ビンゴ");
         } else {
-          console.log(this.row[i-1].id);
+          console.log("行");
+        };
+      };
+
+      // 列のビンゴ判定
+      for(let i=0; i < 5; i++){
+        let count = 0;
+        // 列のアクティブ判定
+        for(let y=0; y < 5; y++){
+          if(this.row[i].children.item(y).className.match("active")) {
+            count++;
+          } else {
+            break;
+          };
+        };
+        if(count == 5){
+          console.log("列ビンゴ");
+        } else {
+          console.log("列");
         };
       };
 
