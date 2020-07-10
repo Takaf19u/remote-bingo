@@ -76,7 +76,7 @@ export default {
   #topItems {
     display: flex;
     align-items: center;
-    height: 80vh;
+    height: 80vw;
     margin: 0 auto 15vh;
     width: 100%;
     /* background-image: url("/assets/Brick-background.jpg");
@@ -86,14 +86,14 @@ export default {
 }
 
   #topItems::before {
+    background: red;
   content: "";
   position: absolute;
-   top: -50px;
-   bottom: 0;
+   top: 0;
    right: 0;
    left: 0;
-  height: 90vh;
-  width: 90vh;
+  height: 90vw;
+  width: 90vw;
   margin: 0 auto;
   z-index: -1;
   border-radius: 100%;
