@@ -76,7 +76,7 @@ export default {
   #topItems {
     display: flex;
     align-items: center;
-    height: 80vw;
+    height: 80vh;
     margin: 0 auto 15vh;
     width: 100%;
     /* background-image: url("/assets/Brick-background.jpg");
@@ -86,14 +86,12 @@ export default {
 }
 
   #topItems::before {
-    background: red;
   content: "";
   position: absolute;
    top: 0;
+   bottom: 0;
    right: 0;
    left: 0;
-  height: 90vw;
-  width: 90vw;
   margin: 0 auto;
   z-index: -1;
   border-radius: 100%;
@@ -104,7 +102,7 @@ export default {
 }
 
   .message {
-    font-size: 3.5vh;
+    font-size: 1.5em;
     color:rgb(248, 8, 188);
     font-weight: 900;
     margin: 3vh 0 5vh;
@@ -115,8 +113,8 @@ export default {
 
 
   .message > .animateBox {
-    height: 5vh;
-    width: 5vh;
+    height: 5vw;
+    width: 5vw;
     margin: 0 8px;
   }
 
@@ -322,7 +320,6 @@ export default {
     min-height: 300px;
     margin: 10px;
     height: 100%;
-    box-shadow: inset 0px 0px  30px 5px rgb(187, 184, 184);
     position: relative;
   }
     .mainItems__btn::after {
@@ -333,7 +330,6 @@ export default {
       left: 0;
       right: 0;
     border: double 10px #FF1177;
-    box-shadow: 0px 0px  10px 3px rgb(143, 143, 143);
     width: 100%;
     height: 100%;
   }

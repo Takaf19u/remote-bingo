@@ -169,6 +169,7 @@ export default {
     // グループですでに表示済みの数字を取得
     get_rands() {
       axios.get(`/groups/${this.$route.params['id']}/rands`, {}).then((res) => {
+        debugger
         let rands = res.data.rands;
         this.masterId = res.data.user_id;
         if (rands !== null || rands !== ""){
