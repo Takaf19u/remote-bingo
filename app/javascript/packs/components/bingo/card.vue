@@ -85,7 +85,6 @@ export default {
   },
   created: function(){
     this.get_rands();
-    this.get_cards();
   },
   mounted: function(){
     this.numberbox = document.getElementById("numberbox");
@@ -131,24 +130,19 @@ export default {
     },
     // カードの数値を取得（なければ新規作成)
     get_cards() {
-      axios.get( this.$route.fullPath, {}).then((res) => {
-          let target = "";
-          this.rescard = res.data.card;
-          let res_number = res.data.card;
-          if (res_number == null){
-            this.createCard();
-          } else {
-            let target = res_number.rand_number.split(',');
-            this.cardNumber = target.slice();
-            this.gameStart_judge(this.cardNumber[12]);
-          };
-        }, (error) => {
-          console.log(error);
-      });
+      debugger
+      let res_number = this.rescard.rand_number
+      if ( res_number== null){
+        this.createCard();
+      } else {
+        let target = res_number.split(',');
+        this.cardNumber = target.slice();
+        this.gameStart_judge(this.cardNumber[12]);
+      };
     },
     // カードを作成
     createCard() {
-      this.card.group_id = this.$route.params['id'];
+      this.card.group_id = this.$route.params['group_id'];
       this.card.rand_number = this.cardRandom();
       axios.post('/cards', { cards: this.card }).then((res) => {
           let target = this.card.rand_number.split(',');
@@ -169,12 +163,17 @@ export default {
     // グループですでに表示済みの数字を取得
     get_rands() {
       axios.get(`/groups/${this.$route.params['id']}/rands`, {}).then((res) => {
+        // カードの情報を格納
+        debugger
+        this.rescard = res.data.card;
+        // グループの数字判定
         let rands = res.data.group.rands;
         this.masterId = res.data.group.user_id;
         if (rands !== null || rands !== ""){
           let target = rands.split(',');
           this.rands = target.slice();
         };
+        this.get_cards();
         }, (error) => {
           console.log(error);
       });

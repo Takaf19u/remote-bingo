@@ -3,6 +3,7 @@ class CardsController < ApplicationController
   def show
     card = Card.find_by( group_id: params[:group_id], user_id: current_user.id )
     respond_to do |format|
+      binding.pry
       format.json {render json: {card: card} }
     end
   end 

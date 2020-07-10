@@ -20,14 +20,14 @@ class GroupsController < ApplicationController
   end
 
   def update
-    group = get_group()
-    group.update(rands: params[:rands])
+    card = get_card()
+    card.group.update(rands: params[:rands])
   end
 
   def rands
-    group = get_group()
+    card = get_card()
     respond_to do |format|
-      format.json {render json: {group: group }}
+      format.json {render json: {group: card.group, card: card  }}
     end
   end
 
@@ -36,9 +36,10 @@ class GroupsController < ApplicationController
       params.require(:groups).permit(:groupName, :password, :password_confirmation ).merge(user_id: current_user.id)
   end
 
-  def get_group
+  # カード情報取得
+  def get_card
     card = Card.find_by(id: params[:id])
-    return  card.group
+    return  card
   end
 
 end
