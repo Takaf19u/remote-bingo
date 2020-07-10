@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/users/sign_up', to: 'groups#index'
   get '/users/sign_in', to: 'groups#index'
   get '/main', to: 'groups#index'
-  get '/createGroup/:id', to: 'groups#index'
+  get '/groups/:group_id/cards/:id', to: 'groups#index'
   
 
   # デバイスのルーティングをカスタマイズ
@@ -18,8 +18,9 @@ Rails.application.routes.draw do
     member do
       get :rands
     end
+    resources :cards, only: [ :show ]
   end
 
-  resources :cards, only: [ :show, :create, :update]
-  
+  resources :cards, only: [ :create, :update]
+
 end
