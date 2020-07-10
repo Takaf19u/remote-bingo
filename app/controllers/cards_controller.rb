@@ -1,8 +1,7 @@
 class CardsController < ApplicationController
 
   def show
-    card = Card.find_by( group_id: params[:id], user_id: current_user.id )
-
+    card = Card.find_by( group_id: params[:group_id], user_id: current_user.id )
     respond_to do |format|
       format.json {render json: {card: card} }
     end
@@ -17,7 +16,7 @@ class CardsController < ApplicationController
     card = Card.new(card_params)
     if card.save
       flash[:notice] = "グループを作成しました。"
-      url = "/createGroup/#{card.group_id}"
+      url = "/groups/#{card.group_id}/cards/#{card.id}"
     else
       flash.now[:alert] = 'グループの作成に失敗しました。'
       url = "/createGroup"

@@ -20,21 +20,25 @@ class GroupsController < ApplicationController
   end
 
   def update
-    group = Group.find_by(id: params[:id])
+    group = get_group()
     group.update(rands: params[:rands])
   end
 
   def rands
-    group = Group.find_by(id: params[:id])
-    binding.pry
+    group = get_group()
     respond_to do |format|
-      format.json {render json: group }
+      format.json {render json: {group: group }}
     end
   end
 
   private 
   def group_params
       params.require(:groups).permit(:groupName, :password, :password_confirmation ).merge(user_id: current_user.id)
+  end
+
+  def get_group
+    card = Card.find_by(id: params[:id])
+    return  card.group
   end
 
 end
