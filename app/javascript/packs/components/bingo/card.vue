@@ -131,7 +131,7 @@ export default {
     },
     // カードの数値を取得（なければ新規作成)
     get_cards() {
-      axios.get(`/cards/${this.$route.params['id']}`, {}).then((res) => {
+      axios.get( this.$route.fullPath, {}).then((res) => {
           let target = "";
           this.rescard = res.data.card;
           let res_number = res.data.card;
@@ -169,9 +169,8 @@ export default {
     // グループですでに表示済みの数字を取得
     get_rands() {
       axios.get(`/groups/${this.$route.params['id']}/rands`, {}).then((res) => {
-        debugger
-        let rands = res.data.rands;
-        this.masterId = res.data.user_id;
+        let rands = res.data.group.rands;
+        this.masterId = res.data.group.user_id;
         if (rands !== null || rands !== ""){
           let target = rands.split(',');
           this.rands = target.slice();
@@ -183,7 +182,7 @@ export default {
     // スタートボタンの処理
     strtbtn(){
       if(this.cardNumber[12] != "S") {
-        this.cardNumber[12] = "S";
+        this.cardNumber.splice(12, 1, "S");
         this.save_cards(this.cardNumber.join(","));
       };
     },
@@ -196,6 +195,7 @@ export default {
     },
     // グループの表示済み数字リストを更新
     save_cards(text) {
+      debugger
       axios.patch(`/cards/${this.rescard.id}`, { rand_number: text }).then((res) => {
           this.gameStart = false;
         }, (error) => {

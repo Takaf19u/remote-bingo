@@ -16,7 +16,7 @@ const router = new VueRouter({
     { path: '/users/sign_up', component: UserForm },
     { path: '/users/sign_in', component: UserForm },
     { path: '/main', component: Main },
-    { path: '/createGroup/:id', component: Group },
+    { path: '/groups/:group_id/cards/:id', component: Group },
   ]
 });
 
