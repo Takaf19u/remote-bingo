@@ -85,6 +85,7 @@ export default {
   },
   created: function(){
     this.get_rands();
+    
   },
   mounted: function(){
     this.numberbox = document.getElementById("numberbox");
